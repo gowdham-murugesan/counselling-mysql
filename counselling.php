@@ -1,25 +1,25 @@
 <?php
   // Username is root
-  $user = '0hiopFTaJ2';
-  $password = '3FAeaFsGPR'; 
+  $user = 'sql6434984';
+  $password = 'vA3VgpXckB'; 
     
   // Database name is gfg
-  $database = '0hiopFTaJ2'; 
+  $database = 'sql6434984'; 
     
   // Server is localhost with
   // port number 3308
-  $servername='remotemysql.com';
+  $servername='sql6.freemysqlhosting.net';
   $mysqli = new mysqli($servername, $user, $password, $database);
     
   // Checking for connections
   if ($mysqli->connect_error) {
       die('Connect Error (' . 
-      $mysqli->connect_errno . ') '. 
+      $mysqli->connect_errno . ') '.
       $mysqli->connect_error);
   }
     
   // SQL query to select data from database
-  $sql = "SELECT * FROM 0hiopFTaJ2.counselling";
+  $sql = "SELECT Choice_Order, College_Code, College_Name, Branch_Name, Closing_Cutoff FROM sql6434984.counselling;";
   $result = $mysqli->query($sql);
   $mysqli->close(); 
   ?>
