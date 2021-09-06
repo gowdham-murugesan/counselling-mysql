@@ -19,7 +19,8 @@
   }
     
   // SQL query to select data from database
-  $sql = "SELECT Choice_Order, College_Code, College_Name, Branch_Name, Closing_Cutoff FROM sql6434984.counselling;";
+  $mysqli->query("SET @row_number = 0;");
+  $sql = "SELECT (@row_number:=@row_number + 1) AS Serial, College_Code, College_Name, Branch_Name, Closing_Cutoff FROM sql6434984.counselling;";
   $result = $mysqli->query($sql);
   $mysqli->close(); 
   ?>
@@ -166,7 +167,7 @@ padding: 8px;
             <tr>
                 <!--FETCHING DATA FROM EACH 
                     ROW OF EVERY COLUMN-->
-                <td><?php echo $rows['Choice_Order'];?></td>
+                <td><?php echo $rows['Serial'];?></td>
                 <td><?php echo $rows['College_Code'];?></td>
                 <td><?php echo $rows['College_Name'];?></td>
                 <td><?php echo $rows['Branch_Name'];?></td>
