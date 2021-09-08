@@ -45,18 +45,27 @@
   #customers td, #customers th {
   font-size: 6pt;
   line-height: 14px;
-}
+  }
+  .button {
+    width: 60px !important;
+    font-size: 6pt;
+    line-height: 14px;
+  }
 }
 
 @media screen and (max-width: 360px) {
-  #customers td, #customers th {
+  #customers td, #customers th, .button {
   font-size: 5pt;
   line-height: 10px;
-}
+  }
+  .button {
+    font-size: 5pt;
+    line-height: 10px;
+  }
 }
 
 @media screen and (max-width: 500px) and (min-width: 400px) {
-  #customers td, #customers th {
+  #customers td, #customers th, .button {
   font-size: 7pt;
   line-height: 14px;
 }
@@ -133,6 +142,27 @@ padding: 8px;
   color: white;
 }
 
+.button {
+display: inline-block;
+width: 75px;
+padding: 5px 0px;
+text-align: center;
+border-radius: 5px;
+color: white;
+text-decoration: none;
+margin-top: 10px;
+}
+
+@media (max-width:768px) {
+  .button {
+  padding: 5px 0px;
+  margin-top: 10px;
+  }
+  .edit {
+    margin-bottom: -5px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -141,7 +171,9 @@ padding: 8px;
 <h2 style="color: rgb(139, 102, 0); margin-top: -10px;">For and By GOWDHAM M</h2>
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Choice Order, College Code, College Name, Branch Name..." title="Type in a name">
-
+<div style="text-align: right; margin-bottom: 10px;">
+  <a href="crud.php" target="_blank" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Edit</a>
+</div>
 <table id="customers">
   <tr style="position: sticky; top: -1px;">
     <th>Choice Order</th>
