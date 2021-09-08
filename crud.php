@@ -189,7 +189,7 @@ margin-top: 10px;
 <div style="text-align: right; margin-bottom: 10px;">
   
   <form method='post' action="">
-  <a href="input.php" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Add New</a>
+  <a href="input.php" target="_blank" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Add New</a>
             <input type="submit" value="Logout" name="but_logout" class="button" style="background-color: red; width: 100px; padding: 8px 4px; cursor: pointer;">
         </form>
 </div>
