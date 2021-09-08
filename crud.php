@@ -54,18 +54,27 @@
   #customers td, #customers th {
   font-size: 6pt;
   line-height: 14px;
-}
+  }
+  .button {
+    width: 60px !important;
+    font-size: 6pt;
+    line-height: 14px;
+  }
 }
 
 @media screen and (max-width: 360px) {
-  #customers td, #customers th {
+  #customers td, #customers th, .button {
   font-size: 5pt;
   line-height: 10px;
-}
+  }
+  .button {
+    font-size: 5pt;
+    line-height: 10px;
+  }
 }
 
 @media screen and (max-width: 500px) and (min-width: 400px) {
-  #customers td, #customers th {
+  #customers td, #customers th, .button {
   font-size: 7pt;
   line-height: 14px;
 }
@@ -150,6 +159,17 @@ text-align: center;
 border-radius: 5px;
 color: white;
 text-decoration: none;
+margin-top: 10px;
+}
+
+@media (max-width:768px) {
+  .button {
+  padding: 5px 0px;
+  margin-top: 10px;
+  }
+  .edit {
+    margin-bottom: -5px;
+  }
 }
 
 </style>
@@ -179,7 +199,7 @@ text-decoration: none;
                     ROW OF EVERY COLUMN-->
                 <td><?php echo $rows['Serial'];?></td>
                 <td><?php echo $rows['College_Code'];?></td>
-                <td><?php echo $rows['College_Name'];?><br><a href="edit.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return edit();" class="button" style="background-color: orange;">Edit</a>&nbsp;&nbsp;&nbsp;<a href="delete.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return deleting();" class="button" style="background-color: red;">Delete</a></td>
+                <td><?php echo $rows['College_Name'];?><br>&nbsp;&nbsp;&nbsp;<a href="edit.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return edit();" class="button edit" style="background-color: orange;">Edit</a>&nbsp;&nbsp;&nbsp;<a href="delete.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return deleting();" class="button" style="background-color: red;">Delete</a></td>
                 <td><?php echo $rows['Branch_Name'];?></td>
                 <td><?php echo $rows['Closing_Cutoff'];?></td>
             </tr>
