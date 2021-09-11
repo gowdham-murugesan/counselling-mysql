@@ -298,10 +298,5 @@ margin-right: 10px;
   }
 </script>
 
-<div style="display: none;">
-  <a href='http://www.freevisitorcounters.com'>Freevisitorcounters.com</a>
-  <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/858142/t/10"></script>
-</div>
-
 </body>
 </html>
