@@ -25,6 +25,18 @@ if(isset($_POST['but_logout'])){
 <head>
   <title>Users page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .button {
+    display: inline-block;
+    width: 75px;
+    padding: 5px 0px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +45,7 @@ if(isset($_POST['but_logout'])){
 <table border="2">
   <tr>
     <td>Name</td>
-    <td>Username</td>
+    <td>email</td>
     <td>Password</td>
     <td>roles</td>
     <td>Edit</td>
@@ -51,7 +63,7 @@ while($data = mysqli_fetch_array($records))
 ?>
   <tr>
     <td><?php echo $data['name']; ?></td>
-    <td><?php echo $data['username']; ?></td>
+    <td><?php echo $data['email']; ?></td>
     <td><?php echo $data['password']; ?></td> 
     <td><?php echo $data['roles']; ?></td>    
     <td><a href="admin-edit.php?id=<?php echo $data['id']; ?>">Edit</a></td>
@@ -63,6 +75,7 @@ while($data = mysqli_fetch_array($records))
 </table>
 
 <form method='post' action="">
+            <a type="submit" href="crud.php" target="_blank" class="button" style="background-color: green; width: 100px; padding: 9px 4px;">Edit</a>
             <input type="submit" value="Logout" name="but_logout" class="button" style="background-color: red; width: 100px; padding: 8px 4px; cursor: pointer;">
         </form>
 

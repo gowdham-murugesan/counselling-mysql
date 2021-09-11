@@ -19,7 +19,7 @@
 		if($del)
         {
             mysqli_close($conn); // Close connection
-            header("location:crud.php"); // redirects to all records page
+            header("location:crud.php#$id"); // redirects to all records page
             exit;	
         }
         else

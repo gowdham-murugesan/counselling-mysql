@@ -8,13 +8,13 @@ if(isset($_POST['but_submit'])){
 
     if ($uname != "" && $password != ""){
 
-        $sql_query = "SELECT count(*) as cntUser from users where username='".$uname."' and password='".$password."'";
+        $sql_query = "SELECT count(*) as cntUser from users where email='".$uname."' and password='".$password."'";
         $result = mysqli_query($con,$sql_query);
         $row = mysqli_fetch_array($result);
 
         $count = $row['cntUser'];
 
-        $sql_query1 = "SELECT * from users where username='".$uname."' and password='".$password."'";
+        $sql_query1 = "SELECT * from users where email='".$uname."' and password='".$password."'";
         $result1 = mysqli_query($con,$sql_query1);
         $row1 = mysqli_fetch_array($result1);
 
@@ -44,7 +44,7 @@ if(isset($_POST['but_submit'])){
       <title>Login Page</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style>
-input[type=text], input[type=password], select {
+input[type=text], input[type=password], input[type=email], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -94,10 +94,10 @@ div#div_login {
     <form method="post" action="">
         <div id="div_login">
             <h1>Login</h1>
-                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" /> <br><br>
+                <input type="email" class="textbox" id="txt_uname" name="txt_uname" placeholder="Email" /> <br><br>
                 <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/> <br><br>
                 <input type="submit" value="Login" name="but_submit" id="but_submit" />
-            <p>Not registered yet? <a href="signup.php">Signup</a></p>
+            <p>Not registered yet? <a href="signup.php" style="text-decoration: none;">Signup</a></p>
         </div>
     </form>
 </div>

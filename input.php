@@ -665,9 +665,9 @@ if(isset($_POST['but_logout'])){
 				VALUES ('$College_Code', '$College_Name', '$Branch_Name', '$Closing_Cutoff')";		
 		
 		if(mysqli_query($conn, $sql)){
-                        
-                        $conn->query("SET @count = (SELECT COUNT(*) FROM counselling);");
-                        $conn->query("UPDATE counselling SET id = @count WHERE id = 0;");
+
+			$conn->query("SET @count = (SELECT COUNT(*) FROM counselling);");
+            $conn->query("UPDATE counselling SET id = @count WHERE id = 0;");
 			$conn->query("SET @a:=0;");
 			$conn->query("UPDATE counselling SET id=@a:=@a+1 order by id;");
 
