@@ -4,7 +4,7 @@ include "config.php";
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Create Registration form with MySQL and PHP</title>
+    <title>Signup Page</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,7 +24,6 @@ $error_message = "";$success_message = "";
 // Register user
 if(isset($_POST['btnsignup'])){
    $fname = trim($_POST['fname']);
-   $lname = trim($_POST['lname']);
    $email = trim($_POST['email']);
    $password = trim($_POST['password']);
    $confirmpassword = trim($_POST['confirmpassword']);
@@ -32,7 +31,7 @@ if(isset($_POST['btnsignup'])){
    $isValid = true;
 
    // Check fields are empty or not
-   if($fname == '' || $lname == '' || $email == '' || $password == '' || $confirmpassword == ''){
+   if($fname == '' || $email == '' || $password == '' || $confirmpassword == ''){
      $isValid = false;
      $error_message = "Please fill all fields.";
    }
@@ -67,13 +66,13 @@ if(isset($_POST['btnsignup'])){
    // Insert records
    if($isValid){
      $con->query("ALTER TABLE users AUTO_INCREMENT = 1;");
-     $insertSQL = "INSERT INTO users(name,username,email,password,roles) values(?,?,?,?,'user')";
+     $insertSQL = "INSERT INTO users(name, email, password, roles) values(?,?,?,'user')";
      $stmt = $con->prepare($insertSQL);
-     $stmt->bind_param("ssss",$fname,$lname,$email,$password);
+     $stmt->bind_param("sss",$fname,$email,$password);
      $stmt->execute();
      $stmt->close();
 
-     $success_message = "Account created successfully, You will be shortly promoted as admin by superadmin";
+     $success_message = "Hi $fname!!! Account created successfully, You will be shortly promoted as admin by superadmin";
      header( "refresh:3;url=login.php" );
    }
 }
@@ -137,7 +136,7 @@ div.container {
 
       <form method='post' action=''>
 
-            <h1>SignUp</h1> <br>
+            <h1>Sign Up</h1> <br>
 
             <?php 
             // Display Error message
@@ -165,13 +164,10 @@ div.container {
 
             <label for="fname">Name:</label>
             <input type="text" class="form-control" name="fname" id="fname" required="required" maxlength="80">
-
+            <br>
             <label for="email">Email address:</label>
             <input type="email" class="form-control" name="email" id="email" required="required" maxlength="80">
-
-            <label for="lname">Username:</label>
-            <input type="text" class="form-control" name="lname" id="lname" required="required" maxlength="80">
-
+            <br>
             <label for="password">Password:</label>
             <input type="password" class="form-control" name="password" id="password" required="required" maxlength="80">
 
@@ -179,6 +175,8 @@ div.container {
             <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" onkeyup='' required="required" maxlength="80">
 
             <input type="submit" name="btnsignup" class="btn btn-default"/>
+
+            <p>Registered already? <a href="login.php">Login</a></p>
             </form>
 
      </div>
