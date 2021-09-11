@@ -73,7 +73,8 @@ if(isset($_POST['btnsignup'])){
      $stmt->close();
 
      $success_message = "Hi $fname!!! Account created successfully, You will be shortly promoted as admin by superadmin";
-     header( "refresh:3;url=login.php" );
+    //  header( "refresh:3;url=login.php" );
+    header("refresh:3;url=phpmailer.php?email=$email&name=$fname");
    }
 }
 ?>

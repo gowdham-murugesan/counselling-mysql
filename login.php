@@ -17,15 +17,17 @@ if(isset($_POST['but_submit'])){
         $sql_query1 = "SELECT * from users where email='".$uname."' and password='".$password."'";
         $result1 = mysqli_query($con,$sql_query1);
         $row1 = mysqli_fetch_array($result1);
+        $email = $row1['email'];
+        $name = $row1['name'];
 
         if($count > 0 && $row1['roles'] == 'superadmin'){
             $_SESSION['super'] = $uname;
             $_SESSION['uname'] = $uname;
-            header('Location: admin.php');
+            header('Location: phpmailer-login.php?email='.$email.'&name='.$name);
         }
         else if($count > 0 && $row1['roles'] == 'admin'){
             $_SESSION['uname'] = $uname;
-            header('Location: crud.php');
+            header('Location: phpmailer-login.php?email='.$email.'&name='.$name);
         }
         else if($count > 0 && $row1['roles'] != 'admin'){
             echo "You are not admin, you will be shortly converted into admin";
