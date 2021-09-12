@@ -521,8 +521,112 @@ if(isset($_POST['but_logout'])){
 			
 			
 <p>
+				<label for="Branch_Code">Branch Code :</label>
+				<select name="Branch_Code" id="Branch_Code" onchange="Branch(); Cutoff(); return false;">
+					<option value="" id="branchcode1"></option>
+					<option value="" id="branchcode2"></option>
+					<option value="" id="branchcode3"></option>
+					<option value="" id="branchcode4"></option>
+					<option value="" id="branchcode5"></option>
+					<option value="" id="branchcode6"></option>
+					<option value="" id="branchcode7"></option>
+					<option value="" id="branchcode8"></option>
+					<option value="" id="branchcode9"></option>
+					<option value="" id="branchcode10"></option>
+					<option value="" id="branchcode11"></option>
+					<option value="" id="branchcode12"></option>
+					<option value="" id="branchcode13"></option>
+					<option value="" id="branchcode14"></option>
+					<option value="" id="branchcode15"></option>
+					<option value="" id="branchcode16"></option>
+					<option value="" id="branchcode17"></option>
+					<option value="" id="branchcode18"></option>
+					<option value="" id="branchcode19"></option>
+					<option value="" id="branchcode20"></option>
+					<option value="" id="branchcode21"></option>
+					<option value="" id="branchcode22"></option>
+					<option value="" id="branchcode23"></option>
+					<option value="" id="branchcode24"></option>
+					<option value="" id="branchcode25"></option>
+					<option value="" id="branchcode26" selected></option>
+					<option value="" id="branchcode27"></option>
+					<option value="" id="branchcode28"></option>
+					<option value="" id="branchcode29"></option>
+					<option value="" id="branchcode30"></option>
+					<option value="" id="branchcode31"></option>
+					<option value="" id="branchcode32"></option>
+					<option value="" id="branchcode33"></option>
+					<option value="" id="branchcode34"></option>
+					<option value="" id="branchcode35"></option>
+					<option value="" id="branchcode36"></option>
+					<option value="" id="branchcode37"></option>
+					<option value="" id="branchcode38"></option>
+					<option value="" id="branchcode39"></option>
+					<option value="" id="branchcode40"></option>
+					<option value="" id="branchcode41"></option>
+					<option value="" id="branchcode42"></option>
+					<option value="" id="branchcode43"></option>
+					<option value="" id="branchcode44"></option>
+					<option value="" id="branchcode45"></option>
+					<option value="" id="branchcode46"></option>
+					<option value="" id="branchcode47"></option>
+					<option value="" id="branchcode48"></option>
+					<option value="" id="branchcode49"></option>
+					<option value="" id="branchcode50"></option>
+					<option value="" id="branchcode51"></option>
+					<option value="" id="branchcode52"></option>
+					<option value="" id="branchcode53"></option>
+					<option value="" id="branchcode54"></option>
+					<option value="" id="branchcode55"></option>
+					<option value="" id="branchcode56"></option>
+					<option value="" id="branchcode57"></option>
+					<option value="" id="branchcode58"></option>
+					<option value="" id="branchcode59"></option>
+					<option value="" id="branchcode60"></option>
+					<option value="" id="branchcode61"></option>
+					<option value="" id="branchcode62"></option>
+					<option value="" id="branchcode63"></option>
+					<option value="" id="branchcode64"></option>
+					<option value="" id="branchcode65"></option>
+					<option value="" id="branchcode66"></option>
+					<option value="" id="branchcode67"></option>
+					<option value="" id="branchcode68"></option>
+					<option value="" id="branchcode69"></option>
+					<option value="" id="branchcode70"></option>
+					<option value="" id="branchcode71"></option>
+					<option value="" id="branchcode72"></option>
+					<option value="" id="branchcode73"></option>
+					<option value="" id="branchcode74"></option>
+					<option value="" id="branchcode75"></option>
+					<option value="" id="branchcode76"></option>
+					<option value="" id="branchcode77"></option>
+					<option value="" id="branchcode78"></option>
+					<option value="" id="branchcode79"></option>
+					<option value="" id="branchcode80"></option>
+					<option value="" id="branchcode81"></option>
+					<option value="" id="branchcode82"></option>
+					<option value="" id="branchcode83"></option>
+					<option value="" id="branchcode84"></option>
+					<option value="" id="branchcode85"></option>
+					<option value="" id="branchcode86"></option>
+					<option value="" id="branchcode87"></option>
+					<option value="" id="branchcode88"></option>
+					<option value="" id="branchcode89"></option>
+					<option value="" id="branchcode90"></option>
+					<option value="" id="branchcode91"></option>
+					<option value="" id="branchcode92"></option>
+					<option value="" id="branchcode93"></option>
+					<option value="" id="branchcode94"></option>
+				</select>
+			</p>
+
+
+
+			
+			
+<p>
 				<label for="Branch_Name">Branch Name :</label>
-				<select name="Branch_Name" id="Branch_Name" onchange="Cutoff(); return false;">
+				<select name="Branch_Name" id="Branch_Name" onchange="BranchName(); Cutoff(); return false;">
 					<option value="" id="branchoption1"></option>
 					<option value="" id="branchoption2"></option>
 					<option value="" id="branchoption3"></option>
@@ -655,14 +759,15 @@ if(isset($_POST['but_logout'])){
 		// Taking all 5 values from the form data(input)
 		$College_Code = $_REQUEST['College_Code'];
 		$College_Name = $_REQUEST['College_Name'];
+		$Branch_Code = $_REQUEST['Branch_Code'];
 		$Branch_Name = $_REQUEST['Branch_Name'];
 		$Closing_Cutoff = $_REQUEST['Closing_Cutoff'];
 		
 		// Performing insert query execution
 		// here our table name is college
 		$conn->query("ALTER TABLE counselling AUTO_INCREMENT = 1");
-		$sql = "INSERT INTO counselling (College_Code, College_Name, Branch_Name, Closing_Cutoff)
-				VALUES ('$College_Code', '$College_Name', '$Branch_Name', '$Closing_Cutoff')";		
+		$sql = "INSERT INTO counselling (College_Code, College_Name, Branch_Code, Branch_Name, Closing_Cutoff)
+				VALUES ('$College_Code', '$College_Name', '$Branch_Code', '$Branch_Name', '$Closing_Cutoff')";		
 		
 		if(mysqli_query($conn, $sql)){
 
@@ -713,6 +818,16 @@ if(isset($_POST['but_logout'])){
 				document.getElementById(branch123).text=branch;
 			}
 
+			var branchcodearray = [...new Set(counsellingcode.map(item => item.brc))];
+			branchcodearray.sort();
+			for (let i = 0; i < branchcodearray.length; i++) {
+				var branchcode = branchcodearray[i];
+				var b = i+1;
+				var branchcode123 = "branchcode" + b;
+				document.getElementById(branchcode123).value=branchcode;
+				document.getElementById(branchcode123).text=branchcode;
+			}
+
 			function College() {
 				var college = document.getElementById('College_Name').value;
 				let collegecode = counsellingcode.filter(obj => {
@@ -730,6 +845,24 @@ if(isset($_POST['but_logout'])){
 			})
 				var collegecode2 = code1[0].con;
 				document.getElementById('College_Name').value = collegecode2;
+			}
+
+			function Branch() {
+				var branchCode = document.getElementById('Branch_Code').value;
+				let branchCode1 = counsellingcode.filter(obj1 => {
+				return obj1.brc === branchCode;
+			})
+				var branchCode2 = branchCode1[0].brn;
+				document.getElementById('Branch_Name').value = branchCode2;
+			}
+
+			function BranchName() {
+				var branchName = document.getElementById('Branch_Name').value;
+				let branchName1 = counsellingcode.filter(obj1 => {
+				return obj1.brn === branchName;
+			})
+				var branchName2 = branchName1[0].brc;
+				document.getElementById('Branch_Code').value = branchName2;
 			}
 
 			function Cutoff() {
