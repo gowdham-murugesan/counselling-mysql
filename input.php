@@ -20,6 +20,7 @@ if(isset($_POST['but_logout'])){
 	<title>Choice List - INPUT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="./counsellingcode.js"></script>
+	<script src="./counsellingrank.js"></script>
 	<style>
 		input[type=text], input[type=number], select {
 		width: 100%;
@@ -735,6 +736,15 @@ if(isset($_POST['but_logout'])){
 
 
 			
+			
+			
+<p>
+				<label for="Closing_Rank">Closing Rank :</label>
+				<input type="text" name="Closing_Rank" id="Closing_Rank" autocomplete="off" value="105">
+			</p>
+
+
+			
 			<input type="submit" value="Submit" name="SubmitButton">
 		</form>
 	</div>
@@ -762,12 +772,13 @@ if(isset($_POST['but_logout'])){
 		$Branch_Code = $_REQUEST['Branch_Code'];
 		$Branch_Name = $_REQUEST['Branch_Name'];
 		$Closing_Cutoff = $_REQUEST['Closing_Cutoff'];
+		$Closing_Rank = $_POST['Closing_Rank'];
 		
 		// Performing insert query execution
 		// here our table name is college
 		$conn->query("ALTER TABLE counselling AUTO_INCREMENT = 1");
-		$sql = "INSERT INTO counselling (College_Code, College_Name, Branch_Code, Branch_Name, Closing_Cutoff)
-				VALUES ('$College_Code', '$College_Name', '$Branch_Code', '$Branch_Name', '$Closing_Cutoff')";		
+		$sql = "INSERT INTO counselling (College_Code, College_Name, Branch_Code, Branch_Name, Closing_Cutoff, Closing_Rank)
+				VALUES ('$College_Code', '$College_Name', '$Branch_Code', '$Branch_Name', '$Closing_Cutoff', '$Closing_Rank')";		
 		
 		if(mysqli_query($conn, $sql)){
 
@@ -876,6 +887,16 @@ if(isset($_POST['but_logout'])){
 				});
 				var collegecutoff2 = collegecutoff[0].BC;
 				document.getElementById('Closing_Cutoff').value = collegecutoff2;
+
+				let collegerank = counsellingrank.filter(obj => {
+					return obj.con == college &&
+					       obj.coc == code &&
+						   obj.brn == branch;
+				});
+				console.log(collegerank);
+				var collegerank2 = collegerank[0].BC;
+				console.log(collegerank2);
+				document.getElementById('Closing_Rank').value = collegerank2;
 			}
 	</script>
 </body>

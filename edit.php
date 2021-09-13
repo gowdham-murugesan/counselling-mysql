@@ -23,11 +23,12 @@
 		$Branch_Code = $_POST['Branch_Code'];
 		$Branch_Name = $_POST['Branch_Name'];
 		$Closing_Cutoff = $_POST['Closing_Cutoff'];
+		$Closing_Rank = $_POST['Closing_Rank'];
 		
 		// Performing insert query execution
 		// here our table name is college
 		// $conn->query("ALTER TABLE sql6434984.counselling AUTO_INCREMENT = 1");
-		$edit = mysqli_query($conn,"UPDATE counselling SET College_Code='$College_Code', College_Name='$College_Name', Branch_Code='$Branch_Code', Branch_Name='$Branch_Name', Closing_Cutoff='$Closing_Cutoff' WHERE Choice_Order='$id'");
+		$edit = mysqli_query($conn,"UPDATE counselling SET College_Code='$College_Code', College_Name='$College_Name', Branch_Code='$Branch_Code', Branch_Name='$Branch_Name', Closing_Cutoff='$Closing_Cutoff', Closing_Rank='$Closing_Rank' WHERE Choice_Order='$id'");
 		
 		if($edit)
 		{
@@ -49,6 +50,7 @@
 	<title>Choice List - INPUT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="./counsellingcode.js"></script>
+	<script src="./counsellingrank.js"></script>
 	<style>
 		input[type=text], input[type=number], select {
 		width: 100%;
@@ -769,6 +771,15 @@
 
 
 			
+			
+			
+<p>
+				<label for="Closing_Rank">Closing Rank :</label>
+				<input type="text" name="Closing_Rank" id="Closing_Rank" autocomplete="off" value="<?php echo $data['Closing_Rank'] ?>">
+			</p>
+
+
+			
 			<input type="submit" value="Submit" name="SubmitButton">
 		</form>
 	</div>
@@ -852,6 +863,16 @@
 				});
 				var collegecutoff2 = collegecutoff[0].BC;
 				document.getElementById('Closing_Cutoff').value = collegecutoff2;
+
+				let collegerank = counsellingrank.filter(obj => {
+					return obj.con == college &&
+						obj.coc == code &&
+						obj.brn == branch;
+				});
+				console.log(collegerank);
+				var collegerank2 = collegerank[0].BC;
+				console.log(collegerank2);
+				document.getElementById('Closing_Rank').value = collegerank2;
 			}
 	</script>
 </body>
