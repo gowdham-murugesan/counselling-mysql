@@ -1,22 +1,4 @@
 <?php
-include "config.php";
-
-// Check user login or not
-if(!isset($_SESSION['uname'])){
-    header('Location: login.php');
-}
-
-// logout
-if(isset($_POST['but_logout'])){
-  session_destroy();
-  echo "<script>
-  window.location.href='./login.php';
-  alert('Successfully logged out');
-  </script>";
-}
-?>
-
-<?php
   include "db.php";
   $mysqli = new mysqli($servername, $user, $password, $database);
     
@@ -36,7 +18,7 @@ if(isset($_POST['but_logout'])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Page</title>
+<title>Choice List</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -169,22 +151,16 @@ border-radius: 5px;
 color: white;
 text-decoration: none;
 margin-top: 10px;
-margin-right: 10px;
 }
 
 @media (max-width:768px) {
   .button {
   padding: 5px 0px;
   margin-top: 10px;
-  margin-right: 0;
   }
   .edit {
     margin-bottom: -5px;
   }
-}
-
-.icons {
-  margin-right: 10px;
 }
 
 </style>
@@ -196,11 +172,7 @@ margin-right: 10px;
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Choice Order, College Code, College Name, Branch Name..." title="Type in a name">
 <div style="text-align: right; margin-bottom: 10px;">
-  
-  <form method='post' action="">
-  <a href="input.php" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Add New</a>
-            <input type="submit" value="Logout" name="but_logout" class="button" style="background-color: red; width: 100px; padding: 8px 4px; cursor: pointer;">
-        </form>
+  <a href="crud.php" target="_blank" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Edit</a>
 </div>
 <table id="customers">
   <tr style="position: sticky; top: -1px;">
@@ -215,12 +187,12 @@ margin-right: 10px;
                 while($rows=$result->fetch_assoc())
                 {
              ?>
-            <tr id=<?php echo $rows['id'];?>>
+            <tr>
                 <!--FETCHING DATA FROM EACH 
                     ROW OF EVERY COLUMN-->
                 <td><?php echo $rows['Serial'];?></td>
                 <td><?php echo $rows['College_Code'];?></td>
-                <td><?php echo $rows['College_Name'];?><br><a href="order.php?id=<?php echo $rows['id']; ?>&order=up" onclick="return up();" class="icons"><i class="fa fa-chevron-circle-up" style="font-size:40px;color:lightseagreen"></i></a><a href="order.php?id=<?php echo $rows['id']; ?>&order=down" onclick="return down();" class="icons" style="margin-right: 20px;"><i class="fa fa-chevron-circle-down" style="font-size:40px;color:lightseagreen"></i></a><a href="edit.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return edit();" class="button edit" style="background-color: orange;">Edit</a><a href="delete.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return deleting();" class="button" style="background-color: red;">Delete</a></td>
+                <td><?php echo $rows['College_Name'];?></td>
                 <td><?php echo $rows['Branch_Name'];?><br>(<?php echo $rows['Branch_Code'];?>)</td>
                 <td><?php echo $rows['Closing_Cutoff'];?><br>(<?php echo $rows['Closing_Rank'];?>)</td>
             </tr>
@@ -231,40 +203,6 @@ margin-right: 10px;
         <div class="footer">
   <span>Gowdham M | Reach me at <a href="mailto:gowdhammurugesh24@gmail.com" target="_blank" class="fa fa-envelope"></a> <a href="https://www.linkedin.com/in/gowdham-murugesan/" target="_blank" class="fa fa-linkedin"></a> <a href="fb://profile/100008861406990" target="_blank" class="fa fa-facebook" id="phonescreen"></a> <a href="https://www.facebook.com/gowdhammurugesh24/" target="_blank" class="fa fa-facebook" id="laptopscreen"></a></span>
 </div>
-
-<script>
-  function edit() {
-    if (confirm('Are you sure, you want to edit this row in database?')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function deleting() {
-    if (confirm('Are you sure, you want to delete this row from database?')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function up() {
-    if (confirm('Are you sure, you want to step up this row in database?')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function down() {
-    if (confirm('Are you sure, you want to step down this row in database?')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-</script>
 
 <script>
   if(screen.width < 600) {

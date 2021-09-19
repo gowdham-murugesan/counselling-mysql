@@ -1,6 +1,11 @@
 <?php
 $email = $_GET['email'];
 $name = $_GET['name'];
+
+$token = md5($email).rand(10,9999);
+$link = "<a href='https://counseling-gowdham.herokuapp.com/verify-email.php?key=".$email."&token=".$token."'>Click and Verify Email</a>";
+include "config.php";
+$con->query("UPDATE users SET token = '$token' WHERE email = '$email';");
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -39,7 +44,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Thank you for register in counselling-gowdham.herokuapp.com';
-    $mail->Body    = 'Hi '.$name.'!!!,<br>Thank you for register with us.';
+    $mail->Body    = 'Hi '.$name.'!!!,<br>Thank you for register with us.<br>'.$link.'';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();

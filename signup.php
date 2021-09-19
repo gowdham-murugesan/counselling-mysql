@@ -66,13 +66,13 @@ if(isset($_POST['btnsignup'])){
    // Insert records
    if($isValid){
      $con->query("ALTER TABLE users AUTO_INCREMENT = 1;");
-     $insertSQL = "INSERT INTO users(name, email, password, roles) values(?,?,?,'user')";
+     $insertSQL = "INSERT INTO users(name, email, password, roles) values(?,?,?,'Not verified')";
      $stmt = $con->prepare($insertSQL);
      $stmt->bind_param("sss",$fname,$email,$password);
      $stmt->execute();
      $stmt->close();
 
-     $success_message = "Hi $fname!!! Account created successfully, You will be shortly promoted as admin by superadmin";
+     $success_message = "Hi $fname!!! Account created successfully, Please verify your email by clicking the link sent to your email";
     //  header( "refresh:3;url=login.php" );
     header("refresh:3;url=phpmailer.php?email=$email&name=$fname");
    }
@@ -80,54 +80,54 @@ if(isset($_POST['btnsignup'])){
 ?>
 
 <style>
-input[type=text], input[type=password], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+  input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
 
-div.container {
-  width: 50% !important;
-  margin-top: 20px;
-  width: 90%;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.row {
-    margin-right: 0px;
-    margin-left: 0px;
+  div.container {
+    width: 50% !important;
+    margin-top: 20px;
+    width: 90%;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    margin: 0 auto;
-}
+  }
 
-@media (max-width: 768px) {
-    div.container {
-        width: 80% !important;
-    }
-}
+  .row {
+      margin-right: 0px;
+      margin-left: 0px;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+      div.container {
+          width: 80% !important;
+      }
+  }
 </style>
 
   </head>
