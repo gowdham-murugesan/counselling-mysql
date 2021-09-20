@@ -3,7 +3,7 @@ $email = $_GET['email'];
 $name = $_GET['name'];
 
 $token = md5($email).rand(10,9999);
-$link = "<a href='localhost/test1/verify-email.php?key=".$email."&token=".$token."'>Click and Verify Email</a>";
+$link = "<a href='http://counseling-gowdham.herokuapp.com/verify-email.php?key=".$email."&token=".$token."'>Click and Verify Email</a>";
 include "config.php";
 $con->query("UPDATE users SET token = '$token' WHERE email = '$email';");
 //Import PHPMailer classes into the global namespace
