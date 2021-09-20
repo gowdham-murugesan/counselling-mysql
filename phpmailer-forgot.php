@@ -1,11 +1,16 @@
 <?php
-$email = $_GET['email'];
-$name = $_GET['name'];
 
+include "config.php"; // Using database connection file here
+
+$email = $_GET['email'];
 $token = md5($email).rand(10,9999);
-$link = "<a href='localhost/test1/verify-email.php?key=".$email."&token=".$token."'>Click and Verify Email</a>";
-include "config.php";
 $con->query("UPDATE users SET token = '$token' WHERE email = '$email';");
+$records = mysqli_query($con,"SELECT * from users where email = '$email';"); // fetch data from database
+$data = mysqli_fetch_array($records);
+$name = $data['name'];
+
+
+$link = "<a href='localhost/test1/new.php?key=".$email."&token=".$token."'>Set new password</a>";
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -43,7 +48,7 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Thank you for register in counselling-gowdham.herokuapp.com';
+    $mail->Subject = 'Reset password';
     $mail->Body    = 'Hi '.$name.'!!!,<br>Thank you for register with us.<br>'.$link.'';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
@@ -54,3 +59,4 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     header("location:login.php");
 }
+?>

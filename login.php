@@ -107,7 +107,7 @@ if(isset($_POST['but_submit'])){
 	
    <div class="container">
     <form method="post" action="">
-        <div id="div_login">
+        <div id="div_login" style="padding-bottom: 40px;">
             <h1>Login</h1>
             <?php
             if(!empty($success_message)){
@@ -132,7 +132,8 @@ if(isset($_POST['but_submit'])){
                 <input type="email" class="textbox" id="txt_uname" name="txt_uname" placeholder="Email" /> <br><br>
                 <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/> <br><br>
                 <input type="submit" value="Login" name="but_submit" id="but_submit" />
-            <p>Not registered yet? <a href="signup.php" style="text-decoration: none;">Signup</a></p>
+            <p style="float: left;">Not registered yet? <a href="signup.php" style="text-decoration: none;">Signup</a></p>
+            <p style="float: right;"><a href="forgot.php" style="text-decoration: none;">Forgot password?</a></p>
         </div>
     </form>
 </div>
