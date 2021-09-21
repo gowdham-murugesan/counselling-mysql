@@ -1,22 +1,4 @@
 <?php
-include "config.php";
-
-// Check user login or not
-if(!isset($_SESSION['uname'])){
-    header('Location: login.php');
-}
-
-// logout
-if(isset($_POST['but_logout'])){
-  session_destroy();
-  echo "<script>
-  window.location.href='./login.php';
-  alert('Successfully logged out');
-  </script>";
-}
-?>
-
-<?php
   include "db.php";
   $mysqli = new mysqli($servername, $user, $password, $database);
     
@@ -31,12 +13,12 @@ if(isset($_POST['but_logout'])){
   $mysqli->query("SET @row_number = 0;");
   $sql = "SELECT (@row_number:=@row_number + 1) AS Serial, id, Choice_Order, College_Code, College_Name, Branch_Code, Branch_Name, Closing_Cutoff, Closing_Rank FROM counselling ORDER BY id;";
   $result = $mysqli->query($sql);
-  $mysqli->close(); 
+  $mysqli->close();
   ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Page</title>
+<title>Choice List</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -219,11 +201,7 @@ if(isset($_POST['but_logout'])){
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Choice Order, College Code, College Name, Branch Name..." title="Type in a name">
 <div style="text-align: right; margin-bottom: 10px;">
-  
-  <form method='post' action="">
-  <a href="input.php" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Add New</a>
-            <input type="submit" value="Logout" name="but_logout" class="button" style="background-color: red; width: 100px; padding: 8px 4px; cursor: pointer;">
-        </form>
+  <a href="crud.php" target="_blank" class="button" style="background-color: green; width: 100px; padding: 10px 5px;">Edit</a>
 </div>
 <table id="customers">
   <tr style="position: sticky; top: -1px;">
@@ -238,12 +216,12 @@ if(isset($_POST['but_logout'])){
                 while($rows=$result->fetch_assoc())
                 {
              ?>
-            <tr id=<?php echo $rows['id'];?>>
+            <tr>
                 <!--FETCHING DATA FROM EACH 
                     ROW OF EVERY COLUMN-->
                 <td><?php echo $rows['Serial'];?></td>
                 <td><?php echo $rows['College_Code'];?></td>
-                <td><?php echo $rows['College_Name'];?><br><a href="order.php?id=<?php echo $rows['id']; ?>&order=up" onclick="return up('up<?php echo $rows['id']; ?>');" class="icons"><i class="fa fa-chevron-circle-up" style="font-size:40px;color:lightseagreen" id="up<?php echo $rows['id']; ?>"></i></a><a href="order.php?id=<?php echo $rows['id']; ?>&order=down" onclick="return down('down<?php echo $rows['id']; ?>');" class="icons" style="margin-right: 20px;"><i class="fa fa-chevron-circle-down" style="font-size:40px;color:lightseagreen" id="down<?php echo $rows['id']; ?>"></i></a><a href="edit.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return edit('edit<?php echo $rows['id']; ?>');" class="button edit" style="background-color: orange;">Edit<i id="edit<?php echo $rows['id']; ?>"></i></a><a href="delete.php?id=<?php echo $rows['Choice_Order']; ?>" onclick="return deleting('delete<?php echo $rows['id']; ?>');" class="button" style="background-color: red;">Delete<i id="delete<?php echo $rows['id']; ?>"></i></a></td>
+                <td><?php echo $rows['College_Name'];?></td>
                 <td><?php echo $rows['Branch_Name'];?><br><span style="color: green;">(<?php echo $rows['Branch_Code'];?>)</span></td>
                 <td><?php echo $rows['Closing_Cutoff'];?><br><span style="color: #e42c81;">(<?php echo $rows['Closing_Rank'];?>)</span></td>
             </tr>
@@ -256,58 +234,6 @@ if(isset($_POST['but_logout'])){
 </div>
 
 <script>
-  $(window).on('load', function () {
-    $('#loading').fadeOut();
-  });
-</script>
-
-<script>
-  function edit(id) {
-    if (confirm('Are you sure, you want to edit this row in database?')) {
-      document.getElementById(id).classList.add("fa");
-      document.getElementById(id).classList.add("fa-spin");
-      document.getElementById(id).classList.add("fa-spinner");
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function deleting(id) {
-    if (confirm('Are you sure, you want to delete this row from database?')) {
-      document.getElementById(id).classList.add("fa");
-      document.getElementById(id).classList.add("fa-spin");
-      document.getElementById(id).classList.add("fa-spinner");
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function up(id) {
-    if (confirm('Are you sure, you want to step up this row in database?')) {
-      document.getElementById(id).classList.add("fa-spin");
-      document.getElementById(id).classList.add("fa-spinner");
-      document.getElementById(id).classList.remove("fa-chevron-circle-up");
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function down(id) {
-    if (confirm('Are you sure, you want to step down this row in database?')) {
-      document.getElementById(id).classList.add("fa-spin");
-      document.getElementById(id).classList.add("fa-spinner");
-      document.getElementById(id).classList.remove("fa-chevron-circle-down");
-      return true;
-    } else {
-      return false;
-    }
-  }
-</script>
-
-<script>
   if(screen.width < 600) {
     document.getElementById("laptopscreen").style.display = "none";
   }
@@ -317,10 +243,9 @@ if(isset($_POST['but_logout'])){
 </script>
                               
 <script>
-  var list = document.getElementsByClassName("serial");
-  for (var i = 1; i <= list.length; i++) {  
-    list[i-1].innerHTML = i;
-}
+  $(window).on('load', function () {
+    $('#loading').fadeOut();
+  });
 </script>
 
 <script>

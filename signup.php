@@ -17,6 +17,8 @@ include "config.php";
     <!-- Bootstrap JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 <?php 
 $error_message = "";$success_message = "";
@@ -80,6 +82,24 @@ if(isset($_POST['btnsignup'])){
 ?>
 
 <style>
+    #loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+  }
+
+  #loading-image {
+    z-index: 100;
+  }
+
   input[type=text], input[type=password], select {
     width: 100%;
     padding: 12px 20px;
@@ -132,6 +152,9 @@ if(isset($_POST['btnsignup'])){
 
   </head>
   <body>
+  <div id="loading">
+    <img id="loading-image" src="https://c.tenor.com/8KWBGNcD-zAAAAAC/loader.gif" alt="Loading..." />
+  </div>
     <div class='container'>
       <div class='row'>
 
@@ -182,5 +205,10 @@ if(isset($_POST['btnsignup'])){
 
      </div>
     </div>
+    <script>
+      $(window).on('load', function () {
+        $('#loading').fadeOut();
+      });
+    </script>
   </body>
 </html>

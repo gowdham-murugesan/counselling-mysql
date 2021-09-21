@@ -49,9 +49,28 @@
 <head>
 	<title>Choice List - INPUT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="./counsellingcode.js"></script>
 	<script src="./counsellingrank.js"></script>
 	<style>
+		  #loading {
+			position: fixed;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			opacity: 0.7;
+			background-color: #fff;
+			z-index: 99;
+		}
+
+		#loading-image {
+			z-index: 100;
+		}
+
 		input[type=text], input[type=number], select {
 		width: 100%;
 		padding: 12px 20px;
@@ -86,6 +105,9 @@
 </head>
 
 <body>
+<div id="loading">
+  <img id="loading-image" src="https://c.tenor.com/8KWBGNcD-zAAAAAC/loader.gif" alt="Loading..." />
+</div>
 		<h1>Edit data in Database</h1>
 <div>
 		<form action="" method="post">
@@ -153,6 +175,11 @@
 		</form>
 	</div>
 
+	<script>
+	$(window).on('load', function () {
+		$('#loading').fadeOut();
+	});
+	</script>
 	<script>
 			var testarray = [...new Set(counsellingcode.map(item => item.con))];
 			testarray.sort();
