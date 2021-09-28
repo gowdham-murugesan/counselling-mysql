@@ -24,12 +24,14 @@ if(isset($_POST['but_submit'])){
             $_SESSION['super'] = $uname;
             $_SESSION['uname'] = $uname;
             $success_message = "Welcome Super Admin, You are logged in successfully";
-            header("refresh:1;url=phpmailer-login.php?email=$email&name=$name");
+            // header("refresh:1;url=phpmailer-login.php?email=$email&name=$name");
+            header("refresh:1;url=ip.php?email=$email&name=$name");
         }
         else if($count > 0 && $row1['roles'] == 'admin'){
             $_SESSION['uname'] = $uname;
             $success_message = "Welcome $name, You are logged in successfully";
-            header("refresh:1;url=phpmailer-login.php?email=$email&name=$name");
+            // header("refresh:1;url=phpmailer-login.php?email=$email&name=$name");
+            header("refresh:1;url=ip.php?email=$email&name=$name");
         }
         else if($count > 0 && $row1['roles'] == 'user'){
             $error_message = "You are depromoted due to unwanted editing in this site, so you can't login... Contact admin for further informations";
