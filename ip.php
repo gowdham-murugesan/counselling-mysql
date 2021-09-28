@@ -35,16 +35,16 @@ var url = new URL(url_string);
 var name = url.searchParams.get("name");
 var email = url.searchParams.get("email");
 
-$.getJSON('http://ip-api.com/json', function(data) {
+$.getJSON('https://ipapi.co/json/', function(data) {
   var a;
   window.a = data;
   b();
 });
 function b() {
   var time = myTime();
-  var ip = a.query;
+  var ip = a.ip;
   var platform = navigator.platform;
-  var place = a.city + ", " + a.regionName + ", " + a.country;
+  var place = a.city + ", " + a.region + ", " + a.country_name;
   var network = a.org;
   var useragent = navigator.appVersion;
 
