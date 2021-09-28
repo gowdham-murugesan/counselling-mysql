@@ -35,7 +35,7 @@ var url = new URL(url_string);
 var name = url.searchParams.get("name");
 var email = url.searchParams.get("email");
 
-$.getJSON('http://ip-api.com/json', function(data) {
+$.getJSON('http://ip-api.com/json/', function(data) {
   var a;
   window.a = data;
   b();
